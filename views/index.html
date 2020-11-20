@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.5.1.js" ></script>
+</head>
+<body>
+안녕하세요 nodejs로 만든 화면입니다.
+<button onclick="getNodeTests()">가져오기</button>
+<button onclick="postNodeTest()">보내기</button>
+<script>
+    function postNodeTest(){
+        var url = '/nodetest';
+        var data = {
+            no : 1,
+            name : 'haha'
+        }
+        $.ajax({
+            data:JSON.stringify(data),
+            method:'POST',
+            contentType: 'application/json;charset=UTF-8',
+            url : url,
+            success : function(res){
+                console.log(res);
+            },
+            error : function(err){
+                console.log(err);
+            }
+        })
+    }
+    function getNodeTests(){
+        var url = 'http://localhost:8081/nodetests';
+        $.ajax({
+            method:'GET',
+            url : url,
+            success : function(res){
+                console.log(res);
+            },
+            error : function(err){
+                console.log(err);
+            }
+        })
+    }
+</script>
+</body>
+</html>
